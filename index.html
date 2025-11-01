@@ -68,49 +68,70 @@
             stroke-width: 2;
         }
         
-        /* Keyframes for a subtle, periodic hop movement */
-        @keyframes whatsapp-hop {
-            0%, 40%, 100% {
-                transform: translateY(0) scale(1);
-                /* Default shadow */
-                
+        /* WhatsApp Button "Lift Up" Animation */
+        .animate-pulse-lift {
+            animation: pulse-lift 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes pulse-lift {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 1;
             }
-            5%, 25% { /* Quick hop up and slight scale */
-                transform: translateY(-5px) scale(1.03);
-                /* Lifted shadow */
-                
-            }
-            10%, 30% {
-                 transform: translateY(0) scale(1);
+            50% {
+                transform: translateY(-10px);
+                opacity: 0.8;
             }
         }
 
-        /* 1. Styling for the Floating WhatsApp Button (With 3D Effect) */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-             /* WhatsApp Green */
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            transition: all 0.2s ease;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Apply the new animation, repeating every 3 seconds */
-            animation: whatsapp-hop 3s ease-in-out infinite;
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
-        .whatsapp-float:hover {
-             /* Slightly darker green on hover */
-            transform: translateY(-5px); /* Slight lift */
-            /* Shadow deepens slightly on hover */
-            
-            animation-play-state: paused; /* Pause animation on hover for better interaction */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh; /* Limit height */
+            object-fit: cover; /* Cover the slide area */
+        }
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-button:hover {
+            background-color: white;
+        }
+        .carousel-button.prev {
+            left: 1rem;
+        }
+        .carousel-button.next {
+            right: 1rem;
         }
     </style>
 </head>
@@ -127,9 +148,9 @@
             <div class="flex items-center space-x-4">
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="#about" class="hover:text-amber-400 transition duration-300" data-key="navAbout">आमच्याबद्दल</a>
-                    <a href="#products" class="hover:text-amber-400 transition duration-300" data-key="navProducts">उत्पादне</a>
                     <a href="#gallery" class="hover:text-amber-400 transition duration-300" data-key="navGallery">गॅलरी</a>
+                    <a href="#products" class="hover:text-amber-400 transition duration-300" data-key="navProducts">उत्पादने</a>
+                    <a href="#about" class="hover:text-amber-400 transition duration-300" data-key="navAbout">आमच्याबद्दल</a>
                     <a href="#contact" class="bg-amber-500 text-indigo-900 px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-400 transition duration-300" data-key="navContact">संपर्क</a>
                 </div>
                 <!-- Language Switcher -->
@@ -159,49 +180,58 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 md:py-24 px-6 bg-white">
+    <!-- NEW: Gallery Carousel Section -->
+    <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="aboutTitle">
-                आमचा इतिहास
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="galleryTitle">
+                आमचा मांजा आणि गॅलरी
             </h2>
-            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <!-- Image Collage -->
-                <div class="md:w-1/2 w-full">
-                    <img src="aadi2.jpg" alt="Preeti Patang Bhandar - Since 1992" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+            <div class="carousel-container shadow-2xl rounded-xl">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img src="/thread1.png" alt="Special Handmade Manja">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide1Title">स्पेशल मांजा</h3>
+                            <p data-key="slide1Desc">आमचा खास बनवलेला मजबूत मांजा</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img src="/thread2.png" alt="Designer Kites">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide2Title">बहुरंगी पतंग</h3>
+                            <p data-key="slide2Desc">सर्व प्रकारच्या डिझायनर पतंग उपलब्ध</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img src="/thread3.png" alt="Manja Spools">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide3Title">तयार चक्री (1000 वार)</h3>
+                            <p data-key="slide3Desc">विविध कंपन्यांच्या तयार चक्री</p>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <img src="/thread4.png" alt="Kite Festival">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide4Title">लहान मुलांसाठी मांजा</h3>
+                            <p data-key="slide4Desc">सुरक्षित आणि टिकाऊ पतंग व मांजा</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- About Text -->
-                <div class="md:w-1/2 w-full text-lg text-gray-700 space-y-4">
-                    <p class="leading-relaxed" data-key="aboutText1">
-                        <strong>'प्रीती पतंग भांडार'</strong> हा व्यवसाय <strong>श्री. रामेश्वर पंढरीनाथ संगपाळ (पिंटुभाऊ लोहार)</strong> यांनी सन १९९२ पासून महाराष्ट्रातील नंदुरबार जिल्ह्यात सुरु केला.
-                    </p>
-                    <p class="leading-relaxed" data-key="aboutText2">
-                        भारतात विशेषतः गुजरात येथे प्रसिद्ध असलेल्या 'मकर संक्रांति' साठी लागणारे पतंग (Kites) तसेच मांजा (Thread) यांची विक्री आम्ही करतो. पतंग उडवण्यासाठी मांजा हा महत्त्वाचा असतो, आणि हेच आमचे वैशिष्ट्य!
-                    </p>
-                    <p class="font-bold text-xl text-indigo-800 mt-4" data-key="aboutGoal">
-                        उत्तम गुणवत्तापूर्ण उत्पादन हेच आमचं ध्येय!
-                    </p>
-                </div>
+                <!-- Carousel Buttons -->
+                <button class="carousel-button prev">
+                    <svg class="w-6 h-6 text-indigo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button class="carousel-button next">
+                    <svg class="w-6 h-6 text-indigo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                </button>
             </div>
         </div>
     </section>
-
-    <!-- Our Specialty Section -->
-    <section id="specialty" class="py-16 md:py-24 px-6 bg-indigo-50">
-        <div class="container mx-auto text-center max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-900 mb-8" data-key="specialtyTitle">
-                आमचे वैशिष्ट्य - स्पेशल मांजा
-            </h2>
-            <p class="text-xl text-gray-700 mb-8 leading-relaxed" data-key="specialtyText">
-                आमच्या येथे बहुरंगी, काचेचा वा विना काचेचा स्पेशल मांजा हा आपल्या आवडीनुसार बनवून मिळतो. आम्ही गुणवत्तेला सर्वाधिक प्राधान्य देतो.
-            </p>
-            <blockquote class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-amber-500 text-xl md:text-2xl font-bold text-gray-800 italic">
-                <span data-key="specialtyQuote">"एकदा वापराल...... पुन्हा आमच्याकडचाच मांजा मागाल....."</span>
-                <span class="block text-lg text-gray-600 font-normal mt-2" data-key="specialtyQuoteMarathi"></span>
-            </blockquote>
-        </div>
-    </section>
-
+    
     <!-- Products Section -->
     <section id="products" class="py-16 md:py-24 px-6 bg-gray-100">
         <div class="container mx-auto">
@@ -253,18 +283,107 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
+    <!-- NEW: Kites Gallery Section -->
+    <section id="kites-gallery" class="py-16 md:py-24 px-6 bg-indigo-50">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="galleryTitle">
-                गॅलरी
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="kitesGalleryTitle">
+                पतंग गॅलरी
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <img src="aadi1.jpg" alt="Preeti Patang Bhandar - Poster" class="w-full h-auto object-contain rounded-lg shadow-lg">
-                <img src="aadi2.jpg" alt="Preeti Patang Bhandar - History" class="w-full h-auto object-contain rounded-lg shadow-lg">
+            <div class="carousel-container shadow-2xl rounded-xl">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img src=" " alt="Designer Kites">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide5Title">डिझायनर पतंग</h3>
+                            <p data-key="slide5Desc">आमच्याकडे सर्व प्रकारच्या डिझायनर पतंग आहेत</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img src="aadi1.jpg" alt="Kites for Kids">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide6Title">लहान मुलांसाठी पतंग</h3>
+                            <p data-key="slide6Desc">लहान मुलांसाठी खास, सुरक्षित पतंग</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img src="aadi2.jpg" alt="All Kite Sizes">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide7Title">सर्व आकाराचे पतंग</h3>
+                            <p data-key="slide7Desc">लहान, मध्यम, आणि मोठ्या आकाराचे पतंग उपलब्ध</p>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <img src="aadi1.jpg" alt="Colorful Kites">
+                        <div class="carousel-caption">
+                            <h3 class="text-xl font-bold" data-key="slide8Title">बहुरंगी पतंग</h3>
+                            <p data-key="slide8Desc">आपल्या आवडीनुसार बहुरंगी पतंग</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Buttons -->
+                <button class="carousel-button prev">
+                    <svg class="w-6 h-6 text-indigo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button class="carousel-button next">
+                    <svg class="w-6 h-6 text-indigo-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                </button>
             </div>
         </div>
     </section>
+
+    <!-- MOVED: About Us Section -->
+    <section id="about" class="py-16 md:py-24 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="aboutTitle">
+                आमचा इतिहास
+            </h2>
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <!-- Image Collage -->
+                <div class="md:w-1/2 w-full">
+                    <img src="/aadi1.PNG" alt="Preeti Patang Bhandar - Since 1992" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                </div>
+                <!-- About Text -->
+                <div class="md:w-1/2 w-full text-lg text-gray-700 space-y-4">
+                    <p class="leading-relaxed" data-key="aboutText1">
+                        <strong>'प्रीती पतंग भांडार'</strong> हा व्यवसाय <strong>श्री. रामेश्वर पंढरीनाथ संगपाळ (पिंटुभाऊ लोहार)</strong> यांनी सन १९९२ पासून महाराष्ट्रातील नंदुरबार जिल्ह्यात सुरु केला.
+                    </p>
+                    <p class="leading-relaxed" data-key="aboutText2">
+                        भारतात विशेषतः गुजरात येथे प्रसिद्ध असलेल्या 'मकर संक्रांति' साठी लागणारे पतंग (Kites) तसेच मांजा (Thread) यांची विक्री आम्ही करतो. पतंग उडवण्यासाठी मांजा हा महत्त्वाचा असतो, आणि हेच आमचे वैशिष्ट्य!
+                    </p>
+                    <p class="font-bold text-xl text-indigo-800 mt-4" data-key="aboutGoal">
+                        उत्तम गुणवत्तापूर्ण उत्पादन हेच आमचं ध्येय!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOVED: Our Specialty Section -->
+    <section id="specialty" class="py-16 md:py-24 px-6 bg-indigo-50">
+        <div class="container mx-auto text-center max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-900 mb-8" data-key="specialtyTitle">
+                आमचे वैशिष्ट्य - स्पेशल मांजा
+            </h2>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed" data-key="specialtyText">
+                आमच्या येथे बहुरंगी, काचेचा वा विना काचेचा स्पेशल मांजा हा आपल्या आवडीनुसार बनवून मिळतो. आम्ही गुणवत्तेला सर्वाधिक प्राधान्य देतो.
+            </p>
+            <blockquote class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-amber-500 text-xl md:text-2xl font-bold text-gray-800 italic">
+                <span data-key="specialtyQuote">"एकदा वापराल...... पुन्हा आमच्याकडचाच मांजा मागाल....."</span>
+                <span class="block text-lg text-gray-600 font-normal mt-2" data-key="specialtyQuoteMarathi"></span>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Gallery Section (REMOVED - Replaced by Carousel) -->
+    <!-- 
+    <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
+        ...
+    </section>
+    -->
 
     <!-- Footer / Contact Section -->
     <footer id="contact" class="bg-indigo-950 text-gray-300 pt-16 pb-8 px-6">
@@ -309,7 +428,7 @@
                     <address class="not-italic text-lg flex items-start gap-2 mb-4">
                         <svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         <span data-key="addressText">
-                            महाराष्ट्र जीम समोर, जुना बेल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र
+                            महाराष्ट्र व्यायाम शाळा समोर, जुना बैल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र
                         </span>
                     </address>
                     <a href="https://www.google.com/maps/search/?api=1&query=Maharashtra+Gym,+Tilak+Road,+Nandurbar" 
@@ -331,14 +450,18 @@
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
         <!-- WhatsApp Button -->
-        <a href="https://wa.me/919823170027?text=Hello%20Preeti%20Patang%20Bhandar,%20I%20have%20a%20question." 
-       class="whatsapp-float" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       aria-label="Chat with us on WhatsApp">
-        <img src="/WhatsApp.svg.webp" 
-             alt="WhatsApp Logo" >
-  </a>
+        <a id="whatsappBtn" 
+           href="https://wa.me/919423905383?text=Hello%20Preeti%20Patang%20Bhandar,%20I%20have%20a%20question." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Chat with us on WhatsApp"
+           class="w-14 h-14 shadow-lg animate-pulse-lift"> <!-- Set size on the link -->
+           
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                 alt="WhatsApp Logo"
+                 class="w-full h-full hover:opacity-80 transition-opacity duration-300">
+        </a>
+        
     </div>
 
     <!-- JavaScript -->
@@ -355,6 +478,24 @@
                 heroSubtitle: "Pintubhau's Special Strong <span class='font-bold'>Manja</span>",
                 heroDescription: 'The most trusted name in Nandurbar for kites and threads since 1992.',
                 heroCta: 'Browse Our Products',
+                galleryTitle: 'Our Threads & Manja Gallery',
+                slide1Title: 'Special Manja',
+                slide1Desc: 'Our custom-made strong manja',
+                slide2Title: 'Multi-Color Kites',
+                slide2Desc: 'All types of designer kites available',
+                slide3Title: 'Ready Spools (1000 Vaar)',
+                slide3Desc: 'Ready-to-fly spools from various brands',
+                slide4Title: 'Manja for Kids',
+                slide4Desc: 'Safe and durable manja for kids',
+                kitesGalleryTitle: 'Kites Gallery',
+                slide5Title: 'Designer Kites',
+                slide5Desc: 'We have all types of designer kites',
+                slide6Title: 'Kites for Kids',
+                slide6Desc: 'Special, safe kites for children',
+                slide7Title: 'All Kite Sizes',
+                slide7Desc: 'Small, medium, and large kites available',
+                slide8Title: 'Colorful Kites',
+                slide8Desc: 'Multi-colored kites to suit your choice',
                 aboutTitle: 'Our History',
                 aboutText1: "<strong>'Preeti Patang Bhandar'</strong> was started by <strong>Shri. Rameshwar Pandharinath Sangpal (Pintubhau Lohar)</strong> in 1992, right here in Nandurbar, Maharashtra.",
                 aboutText2: "We specialize in selling `Patang` (kites) and `Manja` (thread) for the world-famous `Makar Sankranti` festival. The `Manja` is the most important part of flying a kite, and that's our specialty!",
@@ -370,7 +511,6 @@
                 product2Text: '`Manja` from various brands, available in all sizes: 1000 `Vaar` (900m), 2500 `Vaar` (250gm), 5000 `Vaar` (500gm), and more.',
                 product3Title: 'Special Ready-Made `Chakri`',
                 product3Text: 'We also have ready-to-fly spools (`Chakri`) with our special, handmade thread. Come and try our custom `Manja`!',
-                galleryTitle: 'Gallery',
                 contactTitle: 'Contact Us',
                 contactInfoTitle: 'Contact Info',
                 contactName1: 'Prop. Rameshwar P. Lohar (Pintubhau)',
@@ -390,6 +530,24 @@
                 heroSubtitle: "पिंटुभाऊ स्पेशल पतंगाचा <span class='font-bold'>मजबूत मांजा</span>",
                 heroDescription: 'सन १९९२ पासून नंदुरबार जिल्ह्यातील सर्वात विश्वासू पतंग आणि मांजा विक्रेते.',
                 heroCta: 'आमची उत्पादने पहा',
+                galleryTitle: 'आमचा मांजा आणि गॅलरी',
+                slide1Title: 'स्पेशल मांजा',
+                slide1Desc: 'आमचा खास बनवलेला मजबूत मांजा',
+                slide2Title: 'बहुरंगी पतंग',
+                slide2Desc: 'सर्व प्रकारच्या डिझायनर पतंग उपलब्ध',
+                slide3Title: 'तयार चक्री (1000 वार)',
+                slide3Desc: 'विविध कंपन्यांच्या तयार चक्री',
+                slide4Title: 'लहान मुलांसाठी मांजा',
+                slide4Desc: 'सुरक्षित आणि टिकाऊ पतंग व मांजा',
+                kitesGalleryTitle: 'पतंग गॅलरी',
+                slide5Title: 'डिझायनर पतंग',
+                slide5Desc: 'आमच्याकडे सर्व प्रकारच्या डिझायनर पतंग आहेत',
+                slide6Title: 'लहान मुलांसाठी पतंग',
+                slide6Desc: 'लहान मुलांसाठी खास, सुरक्षित पतंग',
+                slide7Title: 'सर्व आकाराचे पतंग',
+                slide7Desc: 'लहान, मध्यम, आणि मोठ्या आकाराचे पतंग उपलब्ध',
+                slide8Title: 'बहुरंगी पतंग',
+                slide8Desc: 'आपल्या आवडीनुसार बहुरंगी पतंग',
                 aboutTitle: 'आमचा इतिहास',
                 aboutText1: "<strong>'प्रीती पतंग भांडार'</strong> हा व्यवसाय <strong>श्री. रामेश्वर पंढरीनाथ संगपाळ (पिंटुभाऊ लोहार)</strong> यांनी सन १९९२ पासून महाराष्ट्रातील नंदुरबार जिल्ह्यात सुरु केला.",
                 aboutText2: "भारतात विशेषतः गुजरात येथे प्रसिद्ध असलेल्या 'Makar Sankranti' साठी लागणारे पतंग (Kites) तसेच मांजा (Thread) यांची विक्री आम्ही करतो. पतंग उडवण्यासाठी मांजा हा महत्त्वाचा असतो, आणि हेच आमचे वैशिष्ट्य!",
@@ -405,13 +563,12 @@
                 product2Text: '1000 वार (900 मीटर), 2500 वार (250 ग्रॅम), 5000 वार (500 ग्रॅम) असा विविध कंपन्यांचा मांजा उपलब्ध आहे.',
                 product3Title: 'स्पेशल तयार चक्री',
                 product3Text: 'आमच्या बनवलेल्या स्पेशल दोऱ्याची तयार चक्री सुद्धा उपलब्ध आहे. आमचा बनवलेला मांजा अवश्य वापरून खात्री करा.',
-                galleryTitle: 'गॅलरी',
                 contactTitle: 'आमच्याशी संपर्क साधा',
                 contactInfoTitle: 'संपर्क माहिती',
-                contactName1: 'प्रो. रामेश्वर पी. लोहार (पिंटुहांऊ)',
+                contactName1: 'प्रो. रामेश्वर पी. लोहार (पिंटुभाऊ)',
                 contactName2: 'प्रो. आदर्श आर. संगपाळ',
                 addressTitle: 'आमचा पत्ता',
-                addressText: 'महाराष्ट्र जीम समोर, जुना बेल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र',
+                addressText: 'महाराष्ट्र व्यायाम शाळा समोर, जुना बैल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र',
                 mapButton: 'Google Maps वर पहा',
                 copyright: 'प्रीती पतंग भांडार. सर्व हक्क राखीव.'
             }
@@ -467,23 +624,84 @@
             const preferredLang = localStorage.getItem('language') || 'mr';
             updateLanguage(preferredLang);
         
+            // --- CAROUSEL SCRIPT ---
+            function setupCarousel(carouselContainer) {
+                const track = carouselContainer.querySelector('.carousel-track');
+                if (!track) return; // Exit if track not found
+                
+                const slides = Array.from(track.children);
+                if (slides.length === 0) return; // Exit if no slides
+
+                const nextButton = carouselContainer.querySelector('.carousel-button.next');
+                const prevButton = carouselContainer.querySelector('.carousel-button.prev');
+                
+                // Ensure slides[0] exists and has getBoundingClientRect
+                if (!slides[0] || typeof slides[0].getBoundingClientRect !== 'function') {
+                    console.error('Carousel slides not found or invalid.');
+                    return;
+                }
+                
+                let slideWidth = slides[0].getBoundingClientRect().width;
+                let currentSlide = 0;
+
+                const moveToSlide = (slideIndex) => {
+                    if (!track) return;
+                    // Recalculate width just in case
+                    slideWidth = slides[0].getBoundingClientRect().width;
+                    if(slideWidth === 0) return; // Avoid division by zero or NaN issues
+                    track.style.transform = 'translateX(-' + slideWidth * slideIndex + 'px)';
+                    currentSlide = slideIndex; // Keep currentSlide in sync
+                }
+                
+                // Re-calculate width on window resize
+                window.addEventListener('resize', () => {
+                    if (!slides[0]) return;
+                    slideWidth = slides[0].getBoundingClientRect().width;
+                    if(slideWidth === 0) return;
+                    track.style.transition = 'none'; // Disable transition during resize
+                    track.style.transform = 'translateX(-' + slideWidth * currentSlide + 'px)';
+                    track.style.transition = 'transform 0.5s ease-in-out'; // Re-enable
+                });
+
+                // Next button
+                if (nextButton) {
+                    nextButton.addEventListener('click', e => {
+                        let nextSlide = currentSlide + 1;
+                        if (nextSlide > slides.length - 1) {
+                            nextSlide = 0; // Loop to first slide
+                        }
+                        moveToSlide(nextSlide);
+                    });
+                }
+
+                // Prev button
+                if (prevButton) {
+                    prevButton.addEventListener('click', e => {
+                        let prevSlide = currentSlide - 1;
+                        if (prevSlide < 0) {
+                            prevSlide = slides.length - 1; // Loop to last slide
+                        }
+                        moveToSlide(prevSlide);
+                    });
+                }
+
+                // Auto-play carousel
+                // Give each carousel its own interval
+                setInterval(() => {
+                    if (nextButton) {
+                        nextButton.click();
+                    }
+                }, 4000 + Math.random() * 500); // Add slight random delay
+            }
+
+            // Initialize all carousels
+            document.querySelectorAll('.carousel-container').forEach(setupCarousel);
+
+
             // --- OTHER SCRIPTS ---
 
             // Set current year in footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            // Back to Top Button Logic (REMOVED)
-            // const toTopBtn = document.getElementById('toTopBtn');
-            // window.onscroll = function() {
-            //     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            //         toTopBtn.style.display = 'block';
-            //     } else {
-            //         toTopBtn.style.display = 'none';
-            //     }
-            // };
-            // toTopBtn.onclick = function() {
-            //     window.scrollTo({ top: 0, behavior: 'smooth' });
-            // };
 
             // Smooth scroll for nav links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -499,4 +717,5 @@
 
 </body>
 </html>
+
 
