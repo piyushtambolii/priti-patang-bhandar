@@ -52,22 +52,6 @@
             color: #e5e7eb; /* gray-200 */
         }
 
-        /* Simple Kite SVG Icon */
-        .kite-icon {
-            width: 50px;
-            height: 50px;
-            fill: currentColor;
-        }
-
-        /* Simple Spool (Chakri) SVG Icon */
-        .spool-icon {
-            width: 50px;
-            height: 50px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-        
         /* WhatsApp Button "Lift Up" Animation */
         .animate-pulse-lift {
             animation: pulse-lift 2.5s infinite ease-in-out;
@@ -83,6 +67,35 @@
                 opacity: 0.8;
             }
         }
+
+        /* NEW: WhatsApp Pop-out Styles */
+        .whatsapp-link {
+            position: absolute;
+            bottom: 4px; /* Aligns center of 12-h with 14-h button */
+            right: 4px; /* Aligns center of 12-w with 14-w button */
+            opacity: 0;
+            transform: scale(0.5) translateX(0);
+            transform-origin: bottom right;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy effect */
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        #whatsapp-container.active .whatsapp-link {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Position for link 1 (Aadarsh) */
+        #whatsapp-container.active a:nth-of-type(1) {
+            transform: translateY(-75px); /* 75px up */
+        }
+        
+        /* Position for link 2 (Pintubhau) */
+        #whatsapp-container.active a:nth-of-type(2) {
+            transform: translateY(-150px); /* 150px up */
+        }
+
 
         /* Carousel Styles */
         .carousel-container {
@@ -133,6 +146,38 @@
         .carousel-button.next {
             right: 1rem;
         }
+
+        /* Horizontal Scroll Gallery for Product Cards */
+        .scroll-gallery {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            scroll-snap-type: x mandatory; /* Snap to elements */
+            gap: 12px; /* Space between images */
+            padding-bottom: 12px; /* Space for scrollbar */
+            margin-bottom: -12px; /* Hide scrollbar visually if possible */
+        }
+        /* Hide scrollbar */
+        .scroll-gallery::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-gallery {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .scroll-gallery-item {
+            scroll-snap-align: center; /* Snap to center */
+            flex: 0 0 auto; /* Don't grow or shrink */
+            width: 80%; /* Each item takes 80% of card width */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .scroll-gallery-item img {
+            width: 100%;
+            height: 150px; /* Fixed height for images */
+            object-fit: cover; /* Cover the area */
+        }
+
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -180,7 +225,7 @@
         </div>
     </section>
 
-    <!-- NEW: Gallery Carousel Section -->
+    <!-- Gallery Carousel Section -->
     <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-extrabold text-center text-indigo-900 mb-12" data-key="galleryTitle">
@@ -190,7 +235,7 @@
                 <div class="carousel-track">
                     <!-- Slide 1 -->
                     <div class="carousel-slide">
-                        <img src="/thread1.png" alt="Special Handmade Manja">
+                        <img src="https://placehold.co/1000x600/6366f1/white?text=Special+Manja" alt="Special Handmade Manja" onerror="this.src='https://placehold.co/1000x600/6366f1/white?text=Manja+Image'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide1Title">स्पेशल मांजा</h3>
                             <p data-key="slide1Desc">आमचा खास बनवलेला मजबूत मांजा</p>
@@ -198,15 +243,15 @@
                     </div>
                     <!-- Slide 2 -->
                     <div class="carousel-slide">
-                        <img src="/thread2.png" alt="Designer Kites">
+                        <img src="https://placehold.co/1000x600/ec4899/white?text=Colorful+Threads" alt="Colorful Threads" onerror="this.src='https://placehold.co/1000x600/ec4899/white?text=Thread+Image'">
                         <div class="carousel-caption">
-                            <h3 class="text-xl font-bold" data-key="slide2Title">बहुरंगी पतंग</h3>
-                            <p data-key="slide2Desc">सर्व प्रकारच्या डिझायनर पतंग उपलब्ध</p>
+                            <h3 class="text-xl font-bold" data-key="slide2Title">बहुरंगी मांजा</h3>
+                            <p data-key="slide2Desc">सर्व प्रकारच्या बहुरंगी मांजा उपलब्ध</p>
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide">
-                        <img src="/thread3.png" alt="Manja Spools">
+                        <img src="https://placehold.co/1000x600/f59e0b/white?text=1000+Vaar+Spool" alt="Manja Spools" onerror="this.src='https://placehold.co/1000x600/f59e0b/white?text=Spool+Image'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide3Title">तयार चक्री (1000 वार)</h3>
                             <p data-key="slide3Desc">विविध कंपन्यांच्या तयार चक्री</p>
@@ -214,7 +259,7 @@
                     </div>
                     <!-- Slide 4 -->
                     <div class="carousel-slide">
-                        <img src="/thread4.png" alt="Kite Festival">
+                        <img src="https://placehold.co/1000x600/22c55e/white?text=Kids+Manja" alt="Kite Festival" onerror="this.src='https://placehold.co/1000x600/22c55e/white?text=Kids+Safe+Manja'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide4Title">लहान मुलांसाठी मांजा</h3>
                             <p data-key="slide4Desc">सुरक्षित आणि टिकाऊ पतंग व मांजा</p>
@@ -241,42 +286,72 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <!-- Product Card 1: Kids Manja -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <div class="p-8 text-center">
-                        <svg class="kite-icon mx-auto text-indigo-500 mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 12l10 10 10-10L12 2z"></path></svg>
-                        <h3 class="text-2xl font-bold text-indigo-800 mb-2" data-key="product1Title">लहान मुलांसाठी मांजा</h3>
-                        <p class="text-gray-600" data-key="product1Text">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-indigo-800 mb-2 text-center" data-key="product1Title">लहान मुलांसाठी मांजा</h3>
+                        <p class="text-gray-600 text-center mb-4" data-key="product1Text">
                             लहान मुलांसाठी खास बनवलेला, विनाकाचेचा आणि काचेचा मजबूत मांजा. सुरक्षित आणि टिकाऊ.
                         </p>
                     </div>
+                    <!-- Horizontal Scroll Gallery -->
+                    <div class="scroll-gallery px-6">
+                        <div class="scroll-gallery-item">
+                            <img src="/thread2.png" alt="Safe Manja for Kids" onerror="this.src='https://placehold.co/300x150/22c55e/white?text=Image+1'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="/thread3.png" alt="Colorful Safe Manja" onerror="this.src='https://placehold.co/300x150/3b82f6/white?text=Image+2'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="/thread4.png" alt="Kids Spool" onerror="this.src='https://placehold.co/300x150/ef4444/white?text=Image+3'">
+                        </div>
+                    </div>
+                    <div class="p-6"></div> <!-- Empty space for consistent card height -->
                 </div>
 
                 <!-- Product Card 2: Manja Spools -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <div class="p-8 text-center">
-                        <svg class="spool-icon mx-auto text-amber-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 18h16M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M8 18v2a2 2 0 002 2h4a2 2 0 002-2v-2"></path>
-                            <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"></line>
-                        </svg>
-                        <h3 class="text-2xl font-bold text-amber-700 mb-2" data-key="product2Title">विविध मांजा चक्री</h3>
-                        <p class="text-gray-600" data-key="product2Text">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-amber-700 mb-2 text-center" data-key="product2Title">विविध मांजा चक्री</h3>
+                        <p class="text-gray-600 text-center mb-4" data-key="product2Text">
                             1000 वार (900 मीटर), 2500 वार (250 ग्रॅम), 5000 वार (500 ग्रॅम) असा विविध कंपन्यांचा मांजा उपलब्ध आहे.
                         </p>
                     </div>
+                    <!-- Horizontal Scroll Gallery -->
+                    <div class="scroll-gallery px-6">
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/f59e0b/white?text=1000+Vaar" alt="1000 Vaar Spool" onerror="this.src='https://placehold.co/300x150/f59e0b/white?text=Spool+1'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/f97316/white?text=2500+Vaar" alt="2500 Vaar Spool" onerror="this.src='https://placehold.co/300x150/f97316/white?text=Spool+2'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/ea580c/white?text=5000+Vaar" alt="5000 Vaar Spool" onerror="this.src='https://placehold.co/300x150/ea580c/white?text=Spool+3'">
+                        </div>
+                    </div>
+                     <div class="p-6"></div> <!-- Empty space for consistent card height -->
                 </div>
 
                 <!-- Product Card 3: Ready-made Spools -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <div class="p-8 text-center">
-                        <svg class="spool-icon mx-auto text-indigo-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 18h16M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M8 18v2a2 2 0 002 2h4a2 2 0 002-2v-2"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 10l4 4m0-4l-4 4"></path>
-                        </svg>
-                        <h3 class="text-2xl font-bold text-indigo-800 mb-2" data-key="product3Title">स्पेशल तयार चक्री</h3>
-                        <p class="text-gray-600" data-key="product3Text">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-indigo-800 mb-2 text-center" data-key="product3Title">स्पेशल तयार चक्री</h3>
+                        <p class="text-gray-600 text-center mb-4" data-key="product3Text">
                             आमच्या बनवलेल्या स्पेशल दोऱ्याची तयार चक्री सुद्धा उपलब्ध आहे. आमचा बनवलेला मांजा अवश्य वापरून खात्री करा.
                         </p>
                     </div>
+                     <!-- Horizontal Scroll Gallery -->
+                    <div class="scroll-gallery px-6">
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/6366f1/white?text=Handmade+1" alt="Handmade Spool 1" onerror="this.src='https://placehold.co/300x150/6366f1/white?text=Special+1'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/4f46e5/white?text=Handmade+2" alt="Handmade Spool 2" onerror="this.src='https://placehold.co/300x150/4f46e5/white?text=Special+2'">
+                        </div>
+                        <div class="scroll-gallery-item">
+                            <img src="https://placehold.co/300x150/a855f7/white?text=Handmade+3" alt="Handmade Spool 3" onerror="this.src='https://placehold.co/300x150/a855f7/white?text=Special+3'">
+                        </div>
+                    </div>
+                     <div class="p-6"></div> <!-- Empty space for consistent card height -->
                 </div>
 
             </div>
@@ -293,7 +368,7 @@
                 <div class="carousel-track">
                     <!-- Slide 1 -->
                     <div class="carousel-slide">
-                        <img src=" " alt="Designer Kites">
+                        <img src="/aadi3.jpg" alt="Designer Kites" onerror="this.src='https://placehold.co/1000x600/d946ef/white?text=Kite+1'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide5Title">डिझायनर पतंग</h3>
                             <p data-key="slide5Desc">आमच्याकडे सर्व प्रकारच्या डिझायनर पतंग आहेत</p>
@@ -301,7 +376,7 @@
                     </div>
                     <!-- Slide 2 -->
                     <div class="carousel-slide">
-                        <img src="aadi1.jpg" alt="Kites for Kids">
+                        <img src="/aadi5.jpg" alt="Kites for Kids" onerror="this.src='https://placehold.co/1000x600/db2777/white?text=Kite+2'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide6Title">लहान मुलांसाठी पतंग</h3>
                             <p data-key="slide6Desc">लहान मुलांसाठी खास, सुरक्षित पतंग</p>
@@ -309,7 +384,7 @@
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide">
-                        <img src="aadi2.jpg" alt="All Kite Sizes">
+                        <img src="/aadi4.jpg" alt="All Kite Sizes" onerror="this.src='https://placehold.co/1000x600/be123c/white?text=Kite+3'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide7Title">सर्व आकाराचे पतंग</h3>
                             <p data-key="slide7Desc">लहान, मध्यम, आणि मोठ्या आकाराचे पतंग उपलब्ध</p>
@@ -317,7 +392,7 @@
                     </div>
                     <!-- Slide 4 -->
                     <div class="carousel-slide">
-                        <img src="aadi1.jpg" alt="Colorful Kites">
+                        <img src="/aadi2.jpg" alt="Colorful Kites" onerror="this.src='https://placehold.co/1000x600/e11d48/white?text=Kite+4'">
                         <div class="carousel-caption">
                             <h3 class="text-xl font-bold" data-key="slide8Title">बहुरंगी पतंग</h3>
                             <p data-key="slide8Desc">आपल्या आवडीनुसार बहुरंगी पतंग</p>
@@ -344,7 +419,7 @@
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 <!-- Image Collage -->
                 <div class="md:w-1/2 w-full">
-                    <img src="/aadi1.PNG" alt="Preeti Patang Bhandar - Since 1992" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                    <img src="/aadi1.PNG" alt="Preeti Patang Bhandar - Since 1992" class="w-full h-auto rounded-xl shadow-2xl object-cover" onerror="this.src='https://placehold.co/600x400/818cf8/white?text=Since+1992'">
                 </div>
                 <!-- About Text -->
                 <div class="md:w-1/2 w-full text-lg text-gray-700 space-y-4">
@@ -377,13 +452,6 @@
             </blockquote>
         </div>
     </section>
-
-    <!-- Gallery Section (REMOVED - Replaced by Carousel) -->
-    <!-- 
-    <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
-        ...
-    </section>
-    -->
 
     <!-- Footer / Contact Section -->
     <footer id="contact" class="bg-indigo-950 text-gray-300 pt-16 pb-8 px-6">
@@ -431,7 +499,7 @@
                             महाराष्ट्र व्यायाम शाळा समोर, जुना बैल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र
                         </span>
                     </address>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Maharashtra+Gym,+Tilak+Road,+Nandurbar" 
+                    <a href="https://maps.app.goo.gl/ryYLq2b8UwLY96Pa7" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="inline-block bg-amber-500 text-indigo-900 font-medium px-6 py-2 rounded-full hover:bg-amber-400 transition duration-300" data-key="mapButton">
@@ -448,273 +516,39 @@
     </footer>
 
     <!-- Floating Action Buttons -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
-        <!-- WhatsApp Button -->
-        <a id="whatsappBtn" 
-           href="https://wa.me/919423905383?text=Hello%20Preeti%20Patang%20Bhandar,%20I%20have%20a%20question." 
+    <div id="whatsapp-container" class="fixed bottom-6 right-6 z-50">
+        
+        <!-- Pop-out Link 1 (Aadarsh - 9823170027) -->
+        <a href="https://wa.me/919823170027?text=Hello%20Aadarsh%20(Preeti%20Patang%20Bhandar)" 
            target="_blank" 
            rel="noopener noreferrer" 
-           aria-label="Chat with us on WhatsApp"
-           class="w-14 h-14 shadow-lg animate-pulse-lift"> <!-- Set size on the link -->
-           
+           aria-label="Chat with Aadarsh"
+           class="whatsapp-link w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.542 15.171 3 13.646 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </a>
+        
+        <!-- Pop-out Link 2 (Pintubhau - 9423905383) -->
+        <a href="https://wa.me/919423905383?text=Hello%20Pintubhau%20(Preeti%20Patang%20Bhandar)" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Chat with Pintubhau"
+           class="whatsapp-link w-12 h-12 bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.542 15.171 3 13.646 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </a>
+
+        <!-- Main Trigger Button -->
+        <button id="whatsapp-trigger" 
+           aria-label="Open WhatsApp Chat"
+           class="w-14 h-14 shadow-lg animate-pulse-lift z-10 relative cursor-pointer"> <!-- Add relative -->
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
                  alt="WhatsApp Logo"
                  class="w-full h-full hover:opacity-80 transition-opacity duration-300">
-        </a>
+        </button>
         
     </div>
 
     <!-- JavaScript -->
-    <script>
-        // --- TRANSLATION CONTENT ---
-        const translations = {
-            en: {
-                brandName: '<span class="font-kalam">Preeti Patang Bhandar</span>',
-                navAbout: 'About Us',
-                navProducts: 'Products',
-                navGallery: 'Gallery',
-                navContact: 'Contact',
-                heroTitle: 'Preeti Patang Bhandar',
-                heroSubtitle: "Pintubhau's Special Strong <span class='font-bold'>Manja</span>",
-                heroDescription: 'The most trusted name in Nandurbar for kites and threads since 1992.',
-                heroCta: 'Browse Our Products',
-                galleryTitle: 'Our Threads & Manja Gallery',
-                slide1Title: 'Special Manja',
-                slide1Desc: 'Our custom-made strong manja',
-                slide2Title: 'Multi-Color Kites',
-                slide2Desc: 'All types of designer kites available',
-                slide3Title: 'Ready Spools (1000 Vaar)',
-                slide3Desc: 'Ready-to-fly spools from various brands',
-                slide4Title: 'Manja for Kids',
-                slide4Desc: 'Safe and durable manja for kids',
-                kitesGalleryTitle: 'Kites Gallery',
-                slide5Title: 'Designer Kites',
-                slide5Desc: 'We have all types of designer kites',
-                slide6Title: 'Kites for Kids',
-                slide6Desc: 'Special, safe kites for children',
-                slide7Title: 'All Kite Sizes',
-                slide7Desc: 'Small, medium, and large kites available',
-                slide8Title: 'Colorful Kites',
-                slide8Desc: 'Multi-colored kites to suit your choice',
-                aboutTitle: 'Our History',
-                aboutText1: "<strong>'Preeti Patang Bhandar'</strong> was started by <strong>Shri. Rameshwar Pandharinath Sangpal (Pintubhau Lohar)</strong> in 1992, right here in Nandurbar, Maharashtra.",
-                aboutText2: "We specialize in selling `Patang` (kites) and `Manja` (thread) for the world-famous `Makar Sankranti` festival. The `Manja` is the most important part of flying a kite, and that's our specialty!",
-                aboutGoal: 'Our goal is simple: Excellent Quality Products!',
-                specialtyTitle: 'Our Specialty - The Perfect `Manja`',
-                specialtyText: 'We create custom `Manja` to your liking: multi-colored, glass-coated, or non-glass-coated. Quality is our top priority.',
-                specialtyQuote: '"Use it once... you\'ll always ask for our `Manja` again!"',
-                specialtyQuoteMarathi: '(<span class="font-baloo">एकदा वापराल...... पुन्हा आमच्याकडचाच मांजा मागाल.....</span>)',
-                productsTitle: 'Our Key Products',
-                product1Title: 'Safe `Manja` for Kids',
-                product1Text: 'Specially made strong `Manja` for children, available with and without glass coating for safe fun.',
-                product2Title: 'Variety of `Manja` Spools',
-                product2Text: '`Manja` from various brands, available in all sizes: 1000 `Vaar` (900m), 2500 `Vaar` (250gm), 5000 `Vaar` (500gm), and more.',
-                product3Title: 'Special Ready-Made `Chakri`',
-                product3Text: 'We also have ready-to-fly spools (`Chakri`) with our special, handmade thread. Come and try our custom `Manja`!',
-                contactTitle: 'Contact Us',
-                contactInfoTitle: 'Contact Info',
-                contactName1: 'Prop. Rameshwar P. Lohar (Pintubhau)',
-                contactName2: 'Prop. Aadarsh R. Sangpal',
-                addressTitle: 'Our Address',
-                addressText: 'In front of Maharashtra Gym, Juna Bel Bazar, Tilak Road, Nandurbar, Maharashtra',
-                mapButton: 'View on Google Maps',
-                copyright: 'Preeti Patang Bhandar. All rights reserved.'
-            },
-            mr: {
-                brandName: '<span class="font-baloo">प्रीती पतंग भांडार</span>',
-                navAbout: 'आमच्याबद्दल',
-                navProducts: 'उत्पादने',
-                navGallery: 'गॅलरी',
-                navContact: 'संपर्क',
-                heroTitle: 'प्रीती पतंग भांडार',
-                heroSubtitle: "पिंटुभाऊ स्पेशल पतंगाचा <span class='font-bold'>मजबूत मांजा</span>",
-                heroDescription: 'सन १९९२ पासून नंदुरबार जिल्ह्यातील सर्वात विश्वासू पतंग आणि मांजा विक्रेते.',
-                heroCta: 'आमची उत्पादने पहा',
-                galleryTitle: 'आमचा मांजा आणि गॅलरी',
-                slide1Title: 'स्पेशल मांजा',
-                slide1Desc: 'आमचा खास बनवलेला मजबूत मांजा',
-                slide2Title: 'बहुरंगी पतंग',
-                slide2Desc: 'सर्व प्रकारच्या डिझायनर पतंग उपलब्ध',
-                slide3Title: 'तयार चक्री (1000 वार)',
-                slide3Desc: 'विविध कंपन्यांच्या तयार चक्री',
-                slide4Title: 'लहान मुलांसाठी मांजा',
-                slide4Desc: 'सुरक्षित आणि टिकाऊ पतंग व मांजा',
-                kitesGalleryTitle: 'पतंग गॅलरी',
-                slide5Title: 'डिझायनर पतंग',
-                slide5Desc: 'आमच्याकडे सर्व प्रकारच्या डिझायनर पतंग आहेत',
-                slide6Title: 'लहान मुलांसाठी पतंग',
-                slide6Desc: 'लहान मुलांसाठी खास, सुरक्षित पतंग',
-                slide7Title: 'सर्व आकाराचे पतंग',
-                slide7Desc: 'लहान, मध्यम, आणि मोठ्या आकाराचे पतंग उपलब्ध',
-                slide8Title: 'बहुरंगी पतंग',
-                slide8Desc: 'आपल्या आवडीनुसार बहुरंगी पतंग',
-                aboutTitle: 'आमचा इतिहास',
-                aboutText1: "<strong>'प्रीती पतंग भांडार'</strong> हा व्यवसाय <strong>श्री. रामेश्वर पंढरीनाथ संगपाळ (पिंटुभाऊ लोहार)</strong> यांनी सन १९९२ पासून महाराष्ट्रातील नंदुरबार जिल्ह्यात सुरु केला.",
-                aboutText2: "भारतात विशेषतः गुजरात येथे प्रसिद्ध असलेल्या 'Makar Sankranti' साठी लागणारे पतंग (Kites) तसेच मांजा (Thread) यांची विक्री आम्ही करतो. पतंग उडवण्यासाठी मांजा हा महत्त्वाचा असतो, आणि हेच आमचे वैशिष्ट्य!",
-                aboutGoal: 'उत्तम गुणवत्तापूर्ण उत्पादन हेच आमचं ध्येय!',
-                specialtyTitle: 'आमचे वैशिष्ट्य - स्पेशल मांजा',
-                specialtyText: 'आमच्या येथे बहुरंगी, काचेचा वा विना काचेचा स्पेशल मांजा हा आपल्या आवडीनुसार बनवून मिळतो. आम्ही गुणवत्तेला सर्वाधिक प्राधान्य देतो.',
-                specialtyQuote: '"एकदा वापराल...... पुन्हा आमच्याकडचाच मांजा मागाल....."',
-                specialtyQuoteMarathi: '', // Hide the english part
-                productsTitle: 'आमची प्रमुख उत्पादने',
-                product1Title: 'लहान मुलांसाठी मांजा',
-                product1Text: 'लहान मुलांसाठी खास बनवलेला, विनाकाचेचा आणि काचेचा मजबूत मांजा. सुरक्षित आणि टिकाऊ.',
-                product2Title: 'विविध मांजा चक्री',
-                product2Text: '1000 वार (900 मीटर), 2500 वार (250 ग्रॅम), 5000 वार (500 ग्रॅम) असा विविध कंपन्यांचा मांजा उपलब्ध आहे.',
-                product3Title: 'स्पेशल तयार चक्री',
-                product3Text: 'आमच्या बनवलेल्या स्पेशल दोऱ्याची तयार चक्री सुद्धा उपलब्ध आहे. आमचा बनवलेला मांजा अवश्य वापरून खात्री करा.',
-                contactTitle: 'आमच्याशी संपर्क साधा',
-                contactInfoTitle: 'संपर्क माहिती',
-                contactName1: 'प्रो. रामेश्वर पी. लोहार (पिंटुभाऊ)',
-                contactName2: 'प्रो. आदर्श आर. संगपाळ',
-                addressTitle: 'आमचा पत्ता',
-                addressText: 'महाराष्ट्र व्यायाम शाळा समोर, जुना बैल बाजार, टिळक रोड, नंदुरबार, महाराष्ट्र',
-                mapButton: 'Google Maps वर पहा',
-                copyright: 'प्रीती पतंग भांडार. सर्व हक्क राखीव.'
-            }
-        };
-
-        // --- LANGUAGE SWITCHER LOGIC ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const langEnBtn = document.getElementById('lang-en');
-            const langMrBtn = document.getElementById('lang-mr');
-            const buttons = [langEnBtn, langMrBtn];
-
-            function updateLanguage(lang) {
-                // Set HTML lang attribute
-                document.documentElement.lang = lang;
-
-                // Update text content
-                const content = translations[lang];
-                document.querySelectorAll('[data-key]').forEach(element => {
-                    const key = element.getAttribute('data-key');
-                    if (content[key] !== undefined) {
-                        element.innerHTML = content[key];
-                    }
-                });
-
-                // Update button styles
-                buttons.forEach(btn => {
-                    if (btn.dataset.lang === lang) {
-                        btn.classList.add('lang-active');
-                        btn.classList.remove('lang-inactive');
-                    } else {
-                        btn.classList.add('lang-inactive');
-                        btn.classList.remove('lang-active');
-                    }
-                });
-                
-                // Apply/Remove Marathi fonts
-                const elementsToFont = document.querySelectorAll('[data-key="heroTitle"], [data-key="aboutTitle"], [data-key="specialtyTitle"], [data-key="productsTitle"], [data-key="galleryTitle"], [data-key="contactTitle"]');
-                if (lang === 'mr') {
-                    elementsToFont.forEach(el => el.classList.add('font-baloo'));
-                } else {
-                    elementsToFont.forEach(el => el.classList.remove('font-baloo'));
-                }
-                
-                // Store preference
-                localStorage.setItem('language', lang);
-            }
-
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => updateLanguage(btn.dataset.lang));
-            });
-
-            // On page load, set preferred language (default to Marathi)
-            const preferredLang = localStorage.getItem('language') || 'mr';
-            updateLanguage(preferredLang);
-        
-            // --- CAROUSEL SCRIPT ---
-            function setupCarousel(carouselContainer) {
-                const track = carouselContainer.querySelector('.carousel-track');
-                if (!track) return; // Exit if track not found
-                
-                const slides = Array.from(track.children);
-                if (slides.length === 0) return; // Exit if no slides
-
-                const nextButton = carouselContainer.querySelector('.carousel-button.next');
-                const prevButton = carouselContainer.querySelector('.carousel-button.prev');
-                
-                // Ensure slides[0] exists and has getBoundingClientRect
-                if (!slides[0] || typeof slides[0].getBoundingClientRect !== 'function') {
-                    console.error('Carousel slides not found or invalid.');
-                    return;
-                }
-                
-                let slideWidth = slides[0].getBoundingClientRect().width;
-                let currentSlide = 0;
-
-                const moveToSlide = (slideIndex) => {
-                    if (!track) return;
-                    // Recalculate width just in case
-                    slideWidth = slides[0].getBoundingClientRect().width;
-                    if(slideWidth === 0) return; // Avoid division by zero or NaN issues
-                    track.style.transform = 'translateX(-' + slideWidth * slideIndex + 'px)';
-                    currentSlide = slideIndex; // Keep currentSlide in sync
-                }
-                
-                // Re-calculate width on window resize
-                window.addEventListener('resize', () => {
-                    if (!slides[0]) return;
-                    slideWidth = slides[0].getBoundingClientRect().width;
-                    if(slideWidth === 0) return;
-                    track.style.transition = 'none'; // Disable transition during resize
-                    track.style.transform = 'translateX(-' + slideWidth * currentSlide + 'px)';
-                    track.style.transition = 'transform 0.5s ease-in-out'; // Re-enable
-                });
-
-                // Next button
-                if (nextButton) {
-                    nextButton.addEventListener('click', e => {
-                        let nextSlide = currentSlide + 1;
-                        if (nextSlide > slides.length - 1) {
-                            nextSlide = 0; // Loop to first slide
-                        }
-                        moveToSlide(nextSlide);
-                    });
-                }
-
-                // Prev button
-                if (prevButton) {
-                    prevButton.addEventListener('click', e => {
-                        let prevSlide = currentSlide - 1;
-                        if (prevSlide < 0) {
-                            prevSlide = slides.length - 1; // Loop to last slide
-                        }
-                        moveToSlide(prevSlide);
-                    });
-                }
-
-                // Auto-play carousel
-                // Give each carousel its own interval
-                setInterval(() => {
-                    if (nextButton) {
-                        nextButton.click();
-                    }
-                }, 4000 + Math.random() * 500); // Add slight random delay
-            }
-
-            // Initialize all carousels
-            document.querySelectorAll('.carousel-container').forEach(setupCarousel);
-
-
-            // --- OTHER SCRIPTS ---
-
-            // Set current year in footer
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            // Smooth scroll for nav links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
-
+    <script src="/script.js"></script>
 </body>
 </html>
 
