@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>प्रीती पतंग भांडार - नंदुरबार</title>
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (Inter + Noto Sans Devanagari for Marathi) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts (Inter + Noto Sans Devanagari for Marathi) --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles -->
-    <style>
+    <!-- Custom Styles --><style>
         /* Applying Noto Sans Devanagari as the primary font for Marathi text */
         body {
             font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
@@ -29,7 +26,7 @@
 
         /* Hero Kite SVG Background */
         .hero-bg {
-            background-color: #1a73e8; /* Bright Blue */
+            background-color: #1f2937; /* Dark Gray from Tailwind (gray-800) */
             background-image: 
                 linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
@@ -55,69 +52,59 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50">
+    <!-- Header & Navigation --><header class="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Brand Logo/Name -->
-            <div class="text-2xl font-extrabold text-blue-700">
+            <!-- Brand Logo/Name --><div class="text-2xl font-extrabold text-amber-600">
                 प्रीती पतंग भांडार
             </div>
             
-            <!-- Mobile Menu Button (Hidden for now, can be added) -->
-            <!-- <div class="md:hidden">
+            <!-- Mobile Menu Button (Hidden for now, can be added) --><!-- <div class="md:hidden">
                 <button class="text-gray-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
-            </div> -->
-
-            <!-- Desktop Menu (Simplified for mobile) -->
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">आमच्याबद्दल</a>
-                <a href="#products" class="text-gray-700 hover:text-blue-600 transition duration-300">उत्पादने</a>
-                <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">गॅलरी</a>
-                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition duration-300">संपर्क</a>
+            </div> --><!-- Desktop Menu (Simplified for mobile) --><div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-700 hover:text-amber-600 transition duration-300">आमच्याबद्दल</a>
+                <a href="#products" class="text-gray-700 hover:text-amber-600 transition duration-300">उत्पादने</a>
+                <a href="#gallery" class="text-gray-700 hover:text-amber-600 transition duration-300">गॅलरी</a>
+                <a href="#contact" class="bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-600 transition duration-300">संपर्क</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-white py-20 md:py-32 px-6 text-center">
+    <!-- Hero Section --><section class="hero-bg text-white py-20 md:py-32 px-6 text-center">
         <div class="container mx-auto">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
                 प्रीती पतंग भांडार
             </h1>
-            <p class="text-xl md:text-3xl font-medium opacity-90 text-yellow-300">
+            <p class="text-xl md:text-3xl font-medium opacity-90 text-amber-400">
                 पिंटुभाऊ स्पेशल पतंगाचा मजबूत मांजा
             </p>
-            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">
+            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto text-gray-300">
                 सन १९९२ पासून नंदुरबार जिल्ह्यातील सर्वात विश्वासू पतंग आणि मांजा विक्रेते.
             </p>
-            <a href="#products" class="mt-10 inline-block bg-yellow-400 text-blue-800 font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:bg-yellow-300 transition duration-300 transform hover:scale-105">
+            <a href="#products" class="mt-10 inline-block bg-amber-500 text-white font-bold px-8 py-3 rounded-full text-lg shadow-lg hover:bg-amber-600 transition duration-300 transform hover:scale-105">
                 आमची उत्पादने पहा
             </a>
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-16 md:py-24 px-6 bg-white">
+    <!-- About Us Section --><section id="about" class="py-16 md:py-24 px-6 bg-white">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-12">
                 आमचा इतिहास
             </h2>
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <!-- Image Collage -->
-                <div class="md:w-1/2 w-full">
+                <!-- Image Collage --><div class="md:w-1/2 w-full">
                     <img src="aadi2.jpg" alt="प्रीती पतंग भांडार - सन १९९२ पासून" class="w-full h-auto rounded-xl shadow-2xl object-cover">
                 </div>
-                <!-- About Text -->
-                <div class="md:w-1/2 w-full text-lg text-gray-700 space-y-4">
+                <!-- About Text --><div class="md:w-1/2 w-full text-lg text-gray-700 space-y-4">
                     <p class="leading-relaxed">
                         <strong>'प्रीती पतंग भांडार'</strong> हा व्यवसाय <strong>श्री. रामेश्वर पंढरीनाथ संगपाळ (पिंटुभाऊ लोहार)</strong> यांनी सन 1992 पासून महाराष्ट्रातील नंदुरबार जिल्ह्यात सुरु केला.
                     </p>
                     <p class="leading-relaxed">
                         भारतात विशेषतः गुजरात येथे प्रसिद्ध असलेल्या 'मकर संक्रांति' साठी लागणारे पतंग तसेच मांजा यांची विक्री आम्ही करतो. पतंग उडवण्यासाठी मांजा हा महत्त्वाचा असतो, आणि हेच आमचे वैशिष्ट्य!
                     </p>
-                    <p class="font-bold text-xl text-blue-700 mt-4">
+                    <p class="font-bold text-xl text-amber-700 mt-4">
                         उत्तम गुणवत्तापूर्ण उत्पादन हेच आमचं ध्येय!
                     </p>
                 </div>
@@ -125,62 +112,57 @@
         </div>
     </section>
 
-    <!-- Our Specialty Section -->
-    <section id="specialty" class="py-16 md:py-24 px-6 bg-yellow-50">
+    <!-- Our Specialty Section --><section id="specialty" class="py-16 md:py-24 px-6 bg-yellow-50">
         <div class="container mx-auto text-center max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-red-700 mb-8">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8">
                 आमचे वैशिष्ट्य - स्पेशल मांजा
             </h2>
             <p class="text-xl text-gray-700 mb-8 leading-relaxed">
                 आमच्या येथे बहुरंगी, काचेचा वा विना काचेचा स्पेशल मांजा हा आपल्या आवडीनुसार बनवून मिळतो. आम्ही गुणवत्तेला सर्वाधिक प्राधान्य देतो.
             </p>
-            <blockquote class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-red-500 text-2xl md:text-3xl font-bold text-gray-800 italic">
+            <blockquote class="bg-white p-6 md:p-8 rounded-lg shadow-lg border-l-4 border-amber-500 text-2xl md:text-3xl font-bold text-gray-800 italic">
                 "एकदा वापराल...... पुन्हा आमच्याकडचाच मांजा मागाल....."
             </blockquote>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="py-16 md:py-24 px-6 bg-gray-100">
+    <!-- Products Section --><section id="products" class="py-16 md:py-24 px-6 bg-gray-100">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-12">
                 आमची प्रमुख उत्पादने
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- Product Card 1: Kids Manja -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <!-- Product Card 1: Kids Manja --><div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
                     <div class="p-8 text-center">
-                        <svg class="kite-icon mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 12l10 10 10-10L12 2z"></path></svg>
-                        <h3 class="text-2xl font-bold text-blue-700 mb-2">लहान मुलांसाठी मांजा</h3>
+                        <svg class="kite-icon mx-auto text-amber-500 mb-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 12l10 10 10-10L12 2z"></path></svg>
+                        <h3 class="text-2xl font-bold text-amber-700 mb-2">लहान मुलांसाठी मांजा</h3>
                         <p class="text-gray-600">
                             लहान मुलांसाठी खास बनवलेला, विनाकाचेचा आणि काचेचा मजबूत मांजा. सुरक्षित आणि टिकाऊ.
                         </p>
                     </div>
                 </div>
 
-                <!-- Product Card 2: Manja Spools -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <!-- Product Card 2: Manja Spools --><div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
                     <div class="p-8 text-center">
-                        <svg class="spool-icon mx-auto text-red-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="spool-icon mx-auto text-amber-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 18h16M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M8 18v2a2 2 0 002 2h4a2 2 0 002-2v-2"></path>
                             <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"></line>
                         </svg>
-                        <h3 class="text-2xl font-bold text-red-700 mb-2">विविध मांजा चक्री</h3>
+                        <h3 class="text-2xl font-bold text-amber-700 mb-2">विविध मांजा चक्री</h3>
                         <p class="text-gray-600">
                             1000 वार (900 मीटर), 2500 वार (250 ग्रॅम), 5000 वार (500 ग्रॅम) असा विविध कंपन्यांचा मांजा उपलब्ध आहे.
                         </p>
                     </div>
                 </div>
 
-                <!-- Product Card 3: Ready-made Spools -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <!-- Product Card 3: Ready-made Spools --><div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
                     <div class="p-8 text-center">
-                        <svg class="spool-icon mx-auto text-yellow-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="spool-icon mx-auto text-amber-500 mb-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 18h16M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M8 18v2a2 2 0 002 2h4a2 2 0 002-2v-2"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10 10l4 4m0-4l-4 4"></path>
                         </svg>
-                        <h3 class="text-2xl font-bold text-yellow-700 mb-2">स्पेशल तयार चक्री</h3>
+                        <h3 class="text-2xl font-bold text-amber-700 mb-2">स्पेशल तयार चक्री</h3>
                         <p class="text-gray-600">
                             आमच्या बनवलेल्या स्पेशल दोऱ्याची तयार चक्री सुद्धा उपलब्ध आहे. आमचा बनवलेला मांजा अवश्य वापरून खात्री करा.
                         </p>
@@ -191,10 +173,9 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-16 md:py-24 px-6 bg-white">
+    <!-- Gallery Section --><section id="gallery" class="py-16 md:py-24 px-6 bg-white">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-blue-800 mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-12">
                 गॅलरी
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -204,16 +185,14 @@
         </div>
     </section>
 
-    <!-- Footer / Contact Section -->
-    <footer id="contact" class="bg-gray-900 text-gray-300 pt-16 pb-8 px-6">
+    <!-- Footer / Contact Section --><footer id="contact" class="bg-gray-900 text-gray-300 pt-16 pb-8 px-6">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-extrabold text-center text-white mb-12">
                 आमच्याशी संपर्क साधा
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 
-                <!-- Contact Details -->
-                <div>
+                <!-- Contact Details --><div>
                     <h3 class="text-2xl font-bold text-yellow-400 mb-4">संपर्क माहिती</h3>
                     <div class="space-y-4">
                         <div>
@@ -241,8 +220,7 @@
                     </div>
                 </div>
 
-                <!-- Address & Map -->
-                <div>
+                <!-- Address & Map --><div>
                     <h3 class="text-2xl font-bold text-yellow-400 mb-4">आमचा पत्ता</h3>
                     <address class="not-italic text-lg flex items-start gap-2 mb-4">
                         <svg class="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -253,26 +231,23 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Maharashtra+Gym,+Tilak+Road,+Nandurbar" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       class="inline-block bg-blue-600 text-white font-medium px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+                       class="inline-block bg-amber-500 text-white font-medium px-6 py-2 rounded-full hover:bg-amber-600 transition duration-300">
                         Google Maps वर पहा
                     </a>
                 </div>
             </div>
             
-            <!-- Copyright -->
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <!-- Copyright --><div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
                 &copy; <span id="currentYear"></span> प्रीती पतंग भांडार. सर्व हक्क राखीव.
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="toTopBtn" class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 z-50">
+    <!-- Back to Top Button --><button id="toTopBtn" class="hidden fixed bottom-6 right-6 bg-amber-500 text-white p-3 rounded-full shadow-lg hover:bg-amber-600 transition duration-300 z-50">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
     </button>
 
-    <!-- JavaScript -->
-    <script>
+    <!-- JavaScript --><script>
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -307,3 +282,5 @@
 
 </body>
 </html>
+
+
